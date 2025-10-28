@@ -1,5 +1,21 @@
 import requests
 import time
+from flask import Flask
+import threading
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_flask():
+    app.run(host="0.0.0.0", port=10000)
+
+# להריץ את Flask בת'רד נפרד
+threading.Thread(target=run_flask).start()
+
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+# ...שאר הקוד של הבוט שלך
 
 # === פרטים אישיים שלך ===
 TOKEN = "8307413253:AAH0SxaykxklOMRXJmZQKYd1iaUzoI-rhLY"
